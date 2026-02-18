@@ -3,7 +3,7 @@ name: Deploy Hugo to GitHub Pages
 on:
   push:
     branches: [main]
-  workflow_dispatch:  # allows manual trigger from GitHub UI
+  workflow_dispatch:
 
 concurrency:
   group: "pages"
@@ -12,18 +12,21 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.154.5
+
     steps:
+      - name: Install Hugo
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb \
+            https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
       - name: Checkout source
         uses: actions/checkout@v4
         with:
-          submodules: recursive   # pulls PaperMod theme
-          fetch-depth: 0          # needed for .GitInfo and lastmod
-
-      - name: Setup Hugo
-        uses: step-security/actions-hugo@v3
-        with:
-          hugo-version: '0.154.5'
-          extended: true
+          submodules: recursive
+          fetch-depth: 0
 
       - name: Build site
         run: hugo --minify
@@ -35,4 +38,4 @@ jobs:
           repository-name: mmondin/mmondin.github.io
           branch: main
           folder: public
-          single-commit: true  # keeps the public repo history clean
+          single-commit: true
