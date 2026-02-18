@@ -1,0 +1,38 @@
+baseURL = 'https://mmondin.github.io/'
+languageCode = 'en-us'
+title = 'Mattia Mondin'
+theme = 'PaperMod'
+enableRobotsTXT = true
+enableEmoji = true
+
+[params]
+  env = "production"
+  author = "Mattia Mondin"
+  description = "SRE Architect | Cloud-Native | Observability"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+
+[params.homeInfoParams]
+  Title = "Hi, I'm Mattia 👋"
+  Content = "SRE Architect bridging infrastructure reliability with business outcomes. Writing about Kubernetes, SLOs, observability, and cloud-native ops."
+
+[[params.socialIcons]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/mattia-mondin-26463b135"
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/mmondin"
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2

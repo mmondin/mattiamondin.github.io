@@ -1,0 +1,38 @@
+name: Deploy Hugo to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # allows manual trigger from GitHub UI
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive   # pulls PaperMod theme
+          fetch-depth: 0          # needed for .GitInfo and lastmod
+
+      - name: Setup Hugo
+        uses: step-security/actions-hugo@v3
+        with:
+          hugo-version: '0.154.5'
+          extended: true
+
+      - name: Build site
+        run: hugo --minify
+
+      - name: Deploy to mmondin.github.io
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.DEPLOY_TOKEN }}
+          repository-name: mmondin/mmondin.github.io
+          branch: main
+          folder: public
+          single-commit: true  # keeps the public repo history clean
