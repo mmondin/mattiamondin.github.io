@@ -1,4 +1,4 @@
-baseURL = 'https://mmondin.github.io/'
+baseURL = 'https://mattiamondin.github.io/'
 languageCode = 'en-us'
 title = 'Mattia Mondin'
 theme = 'PaperMod'
