@@ -35,7 +35,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.DEPLOY_TOKEN }}
-          repository-name: mmondin/mmondin.github.io
+          repository-name: mmondin/mattiamondin.github.io
           branch: main
           folder: public
           single-commit: true
