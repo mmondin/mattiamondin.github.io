@@ -31,7 +31,7 @@ jobs:
       - name: Build site
         run: hugo --minify
 
-      - name: Deploy to mmondin.github.io
+      - name: Deploy to mattiamondin.github.io
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.DEPLOY_TOKEN }}
